@@ -7,16 +7,17 @@
   <meta name="description" content="dr Tomasz Dyrmo – cognitive linguistics, gesture, conceptual metaphor, multimodal cognition. Academic profile, research, publications, and teaching.">
   <style>
     :root {
-      --bg-main: #f4f5fb;
+      --bg-main: #f5f6f8;
       --bg-card: #ffffff;
-      --text-main: #111111;
-      --text-muted: #666666;
-      --border-subtle: #d7d9e5;
-      --accent: #2845a3;          /* primary blue */
-      --accent-soft: #e1e5ff;     /* light blue wash */
-      --accent-second: #c94c4c;   /* warm accent */
-      --link: #2845a3;
-      --link-hover: #182a63;
+      --text-main: #111827;       /* slate-900 */
+      --text-muted: #6b7280;      /* slate-500 */
+      --border-subtle: #e0e3ea;
+      --accent: #256f6a;          /* muted teal */
+      --accent-soft: #d6ecea;
+      --accent-second: #b18653;   /* warm sand accent */
+      --line-soft: #e5e7eb;
+      --link: #256f6a;
+      --link-hover: #174340;
     }
 
     * {
@@ -26,7 +27,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top left, #eef1f9 0, var(--bg-main) 45%, #f7f7f7 100%);
+      background: radial-gradient(circle at top left, #eef1f7 0, var(--bg-main) 45%, #f8fafc 100%);
       color: var(--text-main);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -55,7 +56,7 @@
       margin-bottom: 1.75rem;
       position: sticky;
       top: 0;
-      background: linear-gradient(90deg, rgba(40,69,163,0.06), rgba(201,76,76,0.03), rgba(244,245,251,0.96));
+      background: linear-gradient(90deg, rgba(37,111,106,0.04), rgba(177,134,83,0.03), rgba(245,246,248,0.96));
       backdrop-filter: blur(4px);
       z-index: 10;
     }
@@ -114,12 +115,13 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 3fr);
-      row-gap: 1.25rem;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: center;
       padding: 1.9rem 1.7rem 1.9rem;
       margin-bottom: 2.25rem;
-      background: linear-gradient(135deg, rgba(40,69,163,0.07), rgba(255,255,255,0.96));
-      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(37,111,106,0.06), rgba(255,255,255,0.98));
+      border-radius: 22px;
       border: 1px solid var(--accent-soft);
       box-shadow: 0 14px 40px rgba(0,0,0,0.04);
       position: relative;
@@ -129,18 +131,18 @@
     .hero::before {
       content: "";
       position: absolute;
-      right: -60px;
-      top: -60px;
-      width: 160px;
-      height: 160px;
+      right: -80px;
+      top: -80px;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,76,76,0.13), transparent 65%);
+      background: radial-gradient(circle, rgba(177,134,83,0.18), transparent 68%);
       opacity: 0.9;
       pointer-events: none;
     }
 
     .hero-title {
-      font-size: 2.2rem;
+      font-size: 2.25rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin: 0 0 0.5rem;
@@ -151,7 +153,7 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--accent);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.1rem;
     }
 
     .hero-meta {
@@ -174,8 +176,14 @@
       max-width: 44rem;
     }
 
+    .hero-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-soft), transparent);
+      margin: 0.9rem 0 0.8rem;
+    }
+
     .hero-tags {
-      margin-top: 0.9rem;
+      margin-top: 0.4rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
@@ -187,15 +195,50 @@
       letter-spacing: 0.14em;
       border-radius: 999px;
       border: 1px solid var(--accent-soft);
-      padding: 0.26rem 1rem;
+      padding: 0.24rem 0.9rem;
       color: var(--accent);
-      background: rgba(40, 69, 163, 0.06);
+      background: rgba(37,111,106,0.05);
     }
 
     .tag-alt {
-      border-color: rgba(201,76,76,0.35);
+      border-color: rgba(177,134,83,0.5);
       color: var(--accent-second);
-      background: rgba(201, 76, 76, 0.06);
+      background: rgba(177,134,83,0.06);
+    }
+
+    /* Hero photo */
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo-inner {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(37,111,106,0.28);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+      background: #ffffff;
+    }
+
+    .hero-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-photo {
+        order: -1; /* photo on top on mobile */
+        margin-bottom: 0.4rem;
+      }
     }
 
     /* Sections */
@@ -219,12 +262,17 @@
       content: "";
       position: absolute;
       left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      border-radius: 18px 0 0 18px;
-      background: linear-gradient(180deg, var(--accent), var(--accent-second));
-      opacity: 0.12;
+      top: 0.6rem;
+      width: 3px;
+      height: calc(100% - 1.2rem);
+      border-radius: 0 3px 3px 0;
+      background: linear-gradient(180deg, rgba(37,111,106,0.35), rgba(177,134,83,0.3));
+      opacity: 0.16;
+    }
+
+    .section-inner {
+      border-left: 1px solid rgba(148,163,184,0.25);
+      padding-left: 1.35rem;
     }
 
     section + section {
@@ -240,7 +288,7 @@
     }
 
     .section-title {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       margin: 0;
@@ -249,8 +297,8 @@
     .section-title::before {
       content: "";
       display: inline-block;
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: radial-gradient(circle, var(--accent), var(--accent-second));
       margin-right: 0.6rem;
@@ -269,6 +317,8 @@
       color: var(--text-muted);
       margin-bottom: 1.2rem;
       max-width: 42rem;
+      border-top: 1px solid var(--line-soft);
+      padding-top: 0.75rem;
     }
 
     /* Research */
@@ -292,31 +342,55 @@
       position: absolute;
       left: 0;
       top: 0.72em;
-      width: 0.42rem;
-      height: 0.42rem;
+      width: 0.44rem;
+      height: 0.44rem;
       border-radius: 999px;
       background: radial-gradient(circle, var(--accent), var(--accent-second));
     }
 
-    /* Publications grouped by year */
+    /* Collapsible publications grouped by year */
 
-    .pub-year-block {
-      padding: 1.1rem 1.1rem 1.1rem 1.2rem;
+    .pub-years {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    details.pub-year-block {
       border-radius: 12px;
       border: 1px solid var(--accent-soft);
-      background: #fafbff;
-      margin-top: 0.6rem;
+      background: #ffffff;
+      padding: 0.6rem 0.9rem 0.55rem;
     }
 
-    .pub-year-block + .pub-year-block {
-      margin-top: 1rem;
+    details.pub-year-block.pub-year-new {
+      border-color: rgba(177,134,83,0.55);
+      background: linear-gradient(135deg, rgba(177,134,83,0.06), #ffffff);
     }
 
-    .pub-year-heading {
+    details.pub-year-block + details.pub-year-block {
+      margin-top: 0.2rem;
+    }
+
+    details.pub-year-block summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.2rem 0.1rem 0.35rem;
+    }
+
+    details.pub-year-block summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-main {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      margin-bottom: 0.6rem;
     }
 
     .pub-year-label {
@@ -331,36 +405,49 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      padding: 0.16rem 0.7rem;
+      padding: 0.14rem 0.7rem;
       border-radius: 999px;
-      border: 1px solid rgba(40,69,163,0.35);
+      border: 1px solid rgba(37,111,106,0.4);
       color: var(--accent);
-      background: rgba(40,69,163,0.05);
+      background: rgba(37,111,106,0.06);
+      white-space: nowrap;
     }
 
     .pill-new {
-      border-color: rgba(201,76,76,0.55);
+      border-color: rgba(177,134,83,0.7);
       color: var(--accent-second);
-      background: rgba(201,76,76,0.06);
+      background: rgba(177,134,83,0.09);
     }
 
-    .pub-year-new {
-      border-color: rgba(201,76,76,0.4);
-      background: linear-gradient(135deg, rgba(201,76,76,0.03), #fafbff);
+    .summary-icon::before {
+      content: "▾";
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details[open].pub-year-block .summary-icon::before {
+      transform: rotate(180deg);
+    }
+
+    .pub-year-body {
+      border-top: 1px dashed var(--line-soft);
+      margin-top: 0.45rem;
+      padding-top: 0.55rem;
     }
 
     .pub-list {
       list-style: none;
       padding: 0;
-      margin: 0.2rem 0 0;
+      margin: 0.1rem 0 0;
       display: grid;
-      gap: 0.85rem;
+      gap: 0.75rem;
       font-size: 0.92rem;
     }
 
     .pub-item {
-      border-left: 3px solid var(--accent-soft);
-      padding-left: 0.9rem;
+      padding-left: 0.7rem;
+      border-left: 2px solid rgba(148,163,184,0.45);
     }
 
     .pub-title {
@@ -395,15 +482,29 @@
     .teaching-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 1.25rem;
+      gap: 1.3rem;
       margin-top: 0.4rem;
+      border-top: 1px solid var(--line-soft);
+      padding-top: 0.8rem;
     }
 
     .teaching-block {
       padding: 1rem 1.15rem;
       border-radius: 12px;
-      border: 1px solid var(--accent-soft);
-      background: linear-gradient(135deg, rgba(40,69,163,0.02), #fcfcff);
+      border: 1px dashed rgba(148,163,184,0.7);
+      background: linear-gradient(135deg, rgba(37,111,106,0.02), #fbfcfd);
+      position: relative;
+    }
+
+    .teaching-block::before {
+      content: "";
+      position: absolute;
+      top: 0.75rem;
+      left: 0.7rem;
+      width: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.5;
     }
 
     .teaching-title {
@@ -422,7 +523,7 @@
 
     .teaching-list {
       margin: 0;
-      padding-left: 1.05rem;
+      padding-left: 1.1rem;
       font-size: 0.9rem;
     }
 
@@ -469,6 +570,7 @@
           multimodal, multilevel aspects, trying to understand how our minds make sense of the world
           around us.
         </p>
+        <div class="hero-divider"></div>
         <div class="hero-tags">
           <span class="tag">Conceptual metaphor theory</span>
           <span class="tag">Gesture studies</span>
@@ -476,281 +578,320 @@
           <span class="tag tag-alt">Narrative analysis</span>
         </div>
       </div>
+
+      <div class="hero-photo" aria-hidden="false">
+        <div class="hero-photo-inner">
+          <!-- Replace portrait.jpg with your actual file name -->
+          <img src="portrait.jpg" alt="Portrait of dr Tomasz Dyrmo">
+        </div>
+      </div>
     </section>
 
     <main>
       <section id="research">
-        <div class="section-header">
-          <h2 class="section-title">Research Profile</h2>
-          <div class="section-label">Current &amp; Expanding Directions</div>
+        <div class="section-inner">
+          <div class="section-header">
+            <h2 class="section-title">Research Profile</h2>
+            <div class="section-label">Current &amp; Expanding Directions</div>
+          </div>
+          <p class="section-intro">
+            My work focuses on how conceptual metaphors operate across modalities and levels of
+            representation, from image schemas and gesture to discourse and narrative structure. I am
+            particularly interested in how multimodal cues shape affective meaning and social
+            positioning.
+          </p>
+          <h3 class="section-label" style="margin: 0.2rem 0 0.4rem;">Expanding research directions:</h3>
+          <ul class="research-list" aria-label="Expanding research directions">
+            <li>Literary semantics and cognitive stylistics</li>
+            <li>Gesture-based emotional cues in narrative</li>
+            <li>Multimodal meaning-making in game studies</li>
+            <li>Multilevel models of conceptual metaphor and metonymy</li>
+          </ul>
         </div>
-        <p class="section-intro">
-          My work focuses on how conceptual metaphors operate across modalities and levels of
-          representation, from image schemas and gesture to discourse and narrative structure. I am
-          particularly interested in how multimodal cues shape affective meaning and social
-          positioning.
-        </p>
-        <h3 class="section-label" style="margin: 0.4rem 0 0.4rem;">Expanding research directions:</h3>
-        <ul class="research-list" aria-label="Expanding research directions">
-          <li>Literary semantics and cognitive stylistics</li>
-          <li>Gesture-based emotional cues in narrative</li>
-          <li>Multimodal meaning-making in game studies</li>
-          <li>Multilevel models of conceptual metaphor and metonymy</li>
-        </ul>
       </section>
 
       <section id="publications">
-        <div class="section-header">
-          <h2 class="section-title">Publications</h2>
-          <div class="section-label">Selected peer-reviewed work</div>
-        </div>
-        <p class="section-intro">
-          Selected publications on conceptual metaphor, gesture, multimodal meaning, and discourse,
-          grouped by year. The most recent work is highlighted.
-        </p>
-
-        <!-- 2025 - newest -->
-        <div class="pub-year-block pub-year-new">
-          <div class="pub-year-heading">
-            <div class="pub-year-label">2025</div>
-            <div class="pill pill-new">Newest</div>
+        <div class="section-inner">
+          <div class="section-header">
+            <h2 class="section-title">Publications</h2>
+            <div class="section-label">Selected peer-reviewed work</div>
           </div>
-          <ul class="pub-list">
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T., Jankowiak, K., &amp; Kakuba, P. (2025). On the role of space–valence
-                congruency in bilingual orientational metaphor processing.
-                <span class="pub-journal">Language and Cognition, 17, e4.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1017/langcog.2024.49" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1017/langcog.2024.49</a>
-              </div>
-            </li>
+          <p class="section-intro">
+            Selected publications on conceptual metaphor, gesture, multimodal meaning, and discourse,
+            grouped by year. The most recent work is highlighted and expanded by default; earlier
+            years can be expanded as needed.
+          </p>
 
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2025). Extending extended conceptual metaphor theory: Rethinking levels,
-                modalities, and meaning-making.
-                <span class="pub-journal">Cognitive Semiotics, 18, 23–51.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1515/cogsem-2025-2001" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1515/cogsem-2025-2001</a>
-              </div>
-            </li>
+          <div class="pub-years">
+            <!-- 2025 - newest -->
+            <details class="pub-year-block pub-year-new" open>
+              <summary>
+                <div class="summary-main">
+                  <span class="pub-year-label">2025</span>
+                  <span class="pill pill-new">Newest</span>
+                </div>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pub-year-body">
+                <ul class="pub-list">
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T., Jankowiak, K., &amp; Kakuba, P. (2025). On the role of space–valence
+                      congruency in bilingual orientational metaphor processing.
+                      <span class="pub-journal">Language and Cognition, 17, e4.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1017/langcog.2024.49" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1017/langcog.2024.49</a>
+                    </div>
+                  </li>
 
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2025). Secrets in Motion: The role of gestures in a multimodal coming out
-                narrative.
-                <span class="pub-journal">Narrative Inquiry.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1075/ni.25013.dyr" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1075/ni.25013.dyr</a>
-              </div>
-            </li>
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2025). Extending extended conceptual metaphor theory: Rethinking levels,
+                      modalities, and meaning-making.
+                      <span class="pub-journal">Cognitive Semiotics, 18, 23–51.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1515/cogsem-2025-2001" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1515/cogsem-2025-2001</a>
+                    </div>
+                  </li>
 
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2025). Valence distribution and valence alignment in the metaphor
-                <em>być na świeczniku</em> in Polish.
-                <span class="pub-journal">Metaphor and the Social World.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1075/msw.25015.dyr" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1075/msw.25015.dyr</a>
-              </div>
-            </li>
-          </ul>
-        </div>
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2025). Secrets in Motion: The role of gestures in a multimodal coming out
+                      narrative.
+                      <span class="pub-journal">Narrative Inquiry.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1075/ni.25013.dyr" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1075/ni.25013.dyr</a>
+                    </div>
+                  </li>
 
-        <!-- 2024 -->
-        <div class="pub-year-block">
-          <div class="pub-year-heading">
-            <div class="pub-year-label">2024</div>
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2025). Valence distribution and valence alignment in the metaphor
+                      <em>być na świeczniku</em> in Polish.
+                      <span class="pub-journal">Metaphor and the Social World.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1075/msw.25015.dyr" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1075/msw.25015.dyr</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <!-- 2024 -->
+            <details class="pub-year-block">
+              <summary>
+                <div class="summary-main">
+                  <span class="pub-year-label">2024</span>
+                  <span class="pill">Gesture &amp; multimodality</span>
+                </div>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pub-year-body">
+                <ul class="pub-list">
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2024). Image schemas in gestural metaphorical scenarios of swearing.
+                      <span class="pub-journal">Multimodal Communication, 13(2).</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1515/mc-2023-0060" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1515/mc-2023-0060</a>
+                    </div>
+                  </li>
+
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2024). Levels of metaphor in gesture.
+                      <span class="pub-journal">Pragmatics and Cognition, 30(2), 330–352.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1075/pc.00033.dyr" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1075/pc.00033.dyr</a>
+                    </div>
+                  </li>
+
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2024). Figurativeness of the Japanese flag: A multilevel analysis of the
+                      Japan 2011 earthquake distress relief posters.
+                      <span class="pub-journal">Review of Cognitive Linguistics.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1075/rcl.00202.dyr" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1075/rcl.00202.dyr</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <!-- 2023 -->
+            <details class="pub-year-block">
+              <summary>
+                <div class="summary-main">
+                  <span class="pub-year-label">2023</span>
+                  <span class="pill">Coming out metaphors</span>
+                </div>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pub-year-body">
+                <ul class="pub-list">
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2023). Metaphors of coming out in Polish: A cognitive linguistic approach.
+                      <span class="pub-journal">Topics in Linguistics, 24(1), 94–107.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.2478/topling-2023-0007" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.2478/topling-2023-0007</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+            <!-- 2022 -->
+            <details class="pub-year-block">
+              <summary>
+                <div class="summary-main">
+                  <span class="pub-year-label">2022</span>
+                  <span class="pill">Foundational work</span>
+                </div>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="pub-year-body">
+                <ul class="pub-list">
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2022). Gestural metaphorical scenarios and coming out narratives.
+                      <span class="pub-journal">Metaphor and the Social World, 12(1), 23–45.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.1075/msw.20023.dyr" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.1075/msw.20023.dyr</a>
+                    </div>
+                  </li>
+
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2022). A multilevel cognitive model of coming out.
+                      <span class="pub-journal">Papers in Linguistics, 24(4), 27–43.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.31648/pj.8159" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.31648/pj.8159</a>
+                    </div>
+                  </li>
+
+                  <li class="pub-item">
+                    <div class="pub-title">
+                      Dyrmo, T. (2022). Do We Need Queer Cognitive Linguistics?
+                      <span class="pub-journal">Tekst i Dyskurs / Text und Diskurs, 16(1), 241–257.</span>
+                    </div>
+                    <div class="pub-doi">
+                      DOI: <a href="https://doi.org/10.7311/tid.16.2022.12" target="_blank" rel="noopener noreferrer">
+                      https://doi.org/10.7311/tid.16.2022.12</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </details>
           </div>
-          <ul class="pub-list">
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2024). Image schemas in gestural metaphorical scenarios of swearing.
-                <span class="pub-journal">Multimodal Communication, 13(2).</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1515/mc-2023-0060" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1515/mc-2023-0060</a>
-              </div>
-            </li>
-
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2024). Levels of metaphor in gesture.
-                <span class="pub-journal">Pragmatics and Cognition, 30(2), 330–352.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1075/pc.00033.dyr" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1075/pc.00033.dyr</a>
-              </div>
-            </li>
-
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2024). Figurativeness of the Japanese flag: A multilevel analysis of the
-                Japan 2011 earthquake distress relief posters.
-                <span class="pub-journal">Review of Cognitive Linguistics.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1075/rcl.00202.dyr" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1075/rcl.00202.dyr</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 2023 -->
-        <div class="pub-year-block">
-          <div class="pub-year-heading">
-            <div class="pub-year-label">2023</div>
-          </div>
-          <ul class="pub-list">
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2023). Metaphors of coming out in Polish: A cognitive linguistic approach.
-                <span class="pub-journal">Topics in Linguistics, 24(1), 94–107.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.2478/topling-2023-0007" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.2478/topling-2023-0007</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- 2022 -->
-        <div class="pub-year-block">
-          <div class="pub-year-heading">
-            <div class="pub-year-label">2022</div>
-          </div>
-          <ul class="pub-list">
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2022). Gestural metaphorical scenarios and coming out narratives.
-                <span class="pub-journal">Metaphor and the Social World, 12(1), 23–45.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.1075/msw.20023.dyr" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.1075/msw.20023.dyr</a>
-              </div>
-            </li>
-
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2022). A multilevel cognitive model of coming out.
-                <span class="pub-journal">Papers in Linguistics, 24(4), 27–43.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.31648/pj.8159" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.31648/pj.8159</a>
-              </div>
-            </li>
-
-            <li class="pub-item">
-              <div class="pub-title">
-                Dyrmo, T. (2022). Do We Need Queer Cognitive Linguistics?
-                <span class="pub-journal">Tekst i Dyskurs / Text und Diskurs, 16(1), 241–257.</span>
-              </div>
-              <div class="pub-doi">
-                DOI: <a href="https://doi.org/10.7311/tid.16.2022.12" target="_blank" rel="noopener noreferrer">
-                https://doi.org/10.7311/tid.16.2022.12</a>
-              </div>
-            </li>
-          </ul>
         </div>
       </section>
 
       <section id="teaching">
-        <div class="section-header">
-          <h2 class="section-title">Teaching</h2>
-          <div class="section-label">Courses &amp; Focus Areas</div>
-        </div>
-        <p class="section-intro">
-          My teaching combines academic writing pedagogy, research literacy, and practical language
-          skills. I supervise BA theses and design courses that integrate empirical data, discourse
-          analysis, and multimodal perspectives.
-        </p>
-
-        <div class="teaching-grid">
-          <div class="teaching-block">
-            <p class="teaching-label">University courses</p>
-
-            <div style="margin-bottom: 0.75rem;">
-              <h3 class="teaching-title">BA Seminar</h3>
-              <ul class="teaching-list">
-                <li>Supervision of bachelor’s theses</li>
-                <li>Research design and methodology</li>
-                <li>Academic argumentation and data collection</li>
-                <li>Academic style, peer feedback, and revision</li>
-              </ul>
-            </div>
-
-            <div style="margin-bottom: 0.75rem;">
-              <h3 class="teaching-title">Academic Writing for Cognitive Science</h3>
-              <ul class="teaching-list">
-                <li>Structure of scientific papers (IMRD conventions)</li>
-                <li>Stylistic clarity and coherence</li>
-                <li>Quantitative and qualitative reasoning in writing</li>
-              </ul>
-            </div>
-
-            <div style="margin-bottom: 0.75rem;">
-              <h3 class="teaching-title">Academic Writing for Linguists</h3>
-              <ul class="teaching-list">
-                <li>Rhetorical structure and citation practices</li>
-                <li>Research reporting and corpus-based examples</li>
-                <li>Metaphor analysis tasks in academic discourse</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 class="teaching-title">3BA Proseminar</h3>
-              <ul class="teaching-list">
-                <li>Research literacy and proposal writing</li>
-                <li>Literature review strategies</li>
-                <li>Data annotation tasks</li>
-              </ul>
-            </div>
+        <div class="section-inner">
+          <div class="section-header">
+            <h2 class="section-title">Teaching</h2>
+            <div class="section-label">Courses &amp; Focus Areas</div>
           </div>
+          <p class="section-intro">
+            My teaching combines academic writing pedagogy, research literacy, and practical language
+            skills. I supervise BA theses and design courses that integrate empirical data, discourse
+            analysis, and multimodal perspectives.
+          </p>
 
-          <div class="teaching-block">
-            <p class="teaching-label">PNJA &amp; EFL</p>
+          <div class="teaching-grid">
+            <div class="teaching-block">
+              <p class="teaching-label">University courses</p>
 
-            <div style="margin-bottom: 0.75rem;">
-              <h3 class="teaching-title">PNJA Modules</h3>
-              <ul class="teaching-list">
-                <li><strong>Writing:</strong> coherence, cohesion, genre conventions, summaries, paragraphs, essays</li>
-                <li><strong>Grammar:</strong> advanced grammar in context</li>
-                <li><strong>Integrated Skills:</strong> discussion, vocabulary-based tasks, confidence in speaking</li>
-                <li><strong>Pronunciation:</strong> mastering the repository of standard British phonemes</li>
-              </ul>
+              <div style="margin-bottom: 0.75rem;">
+                <h3 class="teaching-title">BA Seminar</h3>
+                <ul class="teaching-list">
+                  <li>Supervision of bachelor’s theses</li>
+                  <li>Research design and methodology</li>
+                  <li>Academic argumentation and data collection</li>
+                  <li>Academic style, peer feedback, and revision</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom: 0.75rem;">
+                <h3 class="teaching-title">Academic Writing for Cognitive Science</h3>
+                <ul class="teaching-list">
+                  <li>Structure of scientific papers (IMRD conventions)</li>
+                  <li>Stylistic clarity and coherence</li>
+                  <li>Quantitative and qualitative reasoning in writing</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom: 0.75rem;">
+                <h3 class="teaching-title">Academic Writing for Linguists</h3>
+                <ul class="teaching-list">
+                  <li>Rhetorical structure and citation practices</li>
+                  <li>Research reporting and corpus-based examples</li>
+                  <li>Metaphor analysis tasks in academic discourse</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="teaching-title">3BA Proseminar</h3>
+                <ul class="teaching-list">
+                  <li>Research literacy and proposal writing</li>
+                  <li>Literature review strategies</li>
+                  <li>Data annotation tasks</li>
+                </ul>
+              </div>
             </div>
 
-            <div style="margin-bottom: 0.75rem;">
-              <h3 class="teaching-title">English Language Teaching (EFL)</h3>
-              <ul class="teaching-list">
-                <li>TEFL for children, teenagers and adults</li>
-                <li>Communicative methodology and creative task design</li>
-                <li>CEFR-based competencies and lexical approach techniques</li>
-              </ul>
-            </div>
+            <div class="teaching-block">
+              <p class="teaching-label">PNJA &amp; EFL</p>
 
-            <div>
-              <h3 class="teaching-title">Business English</h3>
-              <ul class="teaching-list">
-                <li>Workplace communication and presentation skills</li>
-                <li>Email etiquette and negotiation language</li>
-                <li>Professional and domain-specific vocabulary</li>
-              </ul>
+              <div style="margin-bottom: 0.75rem;">
+                <h3 class="teaching-title">PNJA Modules</h3>
+                <ul class="teaching-list">
+                  <li><strong>Writing:</strong> coherence, cohesion, genre conventions, summaries, paragraphs, essays</li>
+                  <li><strong>Grammar:</strong> advanced grammar in context</li>
+                  <li><strong>Integrated Skills:</strong> discussion, vocabulary-based tasks, confidence in speaking</li>
+                  <li><strong>Pronunciation:</strong> mastering the repository of standard British phonemes</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom: 0.75rem;">
+                <h3 class="teaching-title">English Language Teaching (EFL)</h3>
+                <ul class="teaching-list">
+                  <li>TEFL for children, teenagers and adults</li>
+                  <li>Communicative methodology and creative task design</li>
+                  <li>CEFR-based competencies and lexical approach techniques</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="teaching-title">Business English</h3>
+                <ul class="teaching-list">
+                  <li>Workplace communication and presentation skills</li>
+                  <li>Email etiquette and negotiation language</li>
+                  <li>Professional and domain-specific vocabulary</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
