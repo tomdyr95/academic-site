@@ -1,718 +1,391 @@
+<!-- /index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>dr Tomasz Dyrmo – Cognitive Linguistics</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="dr Tomasz Dyrmo – cognitive linguistics, gesture, conceptual metaphor, multimodal cognition. Academic profile, research, publications, teaching, and education.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="dr Tomasz Dyrmo – cognitive linguistics, gesture, conceptual metaphor, multimodal cognition. Academic profile, research, publications, teaching, and education." />
+  <link rel="canonical" href="https://example.com/" />
+  <meta property="og:title" content="dr Tomasz Dyrmo – Cognitive Linguistics" />
+  <meta property="og:description" content="Academic profile, research, publications, teaching, and education." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="/favicon.ico" />
   <style>
+    /* ---------- Design Tokens ---------- */
     :root {
-      --bg-main: #f5f6f8;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;       /* slate-900, slightly darker */
-      --text-muted: #4b5563;      /* slate-600, darker */
-      --border-subtle: #cbd5e1;   /* slate-300, darker */
-      --border-strong: #94a3b8;   /* slate-400 */
-      --accent: #1e4f4b;          /* deeper muted teal */
+      --bg: #f6f7fb;
+      --bg-elev: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+      --accent: #1e4f4b;
+      --accent-2: #946338;
       --accent-soft: #b7e0dd;
-      --accent-second: #946338;   /* slightly darker warm sand */
-      --line-soft: #9ca3af;
       --link: #1e4f4b;
       --link-hover: #123331;
+      --shadow-lg: 0 20px 40px rgba(15,23,42,0.12);
+      --shadow-md: 0 14px 28px rgba(15,23,42,0.08);
+      --radius-xl: 22px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --container: 960px;
+      --header-h: 64px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --bg-elev: #0f172a;
+        --text: #e5e7eb;
+        --text-muted: #cbd5e1;
+        --border: #334155;
+        --border-strong: #475569;
+        --accent: #7dd3c7;
+        --accent-2: #f1b877;
+        --accent-soft: #134e4a;
+        --link: #9ae6df;
+        --link-hover: #c0f1ec;
+        --shadow-lg: 0 20px 40px rgba(0,0,0,0.5);
+        --shadow-md: 0 14px 28px rgba(0,0,0,0.35);
+      }
     }
 
-    * {
-      box-sizing: border-box;
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html:focus-within { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html:focus-within { scroll-behavior: auto; }
+      * { animation: none!important; transition: none!important; }
     }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background:
-        linear-gradient(180deg, #e5e7eb 0, #f5f6f8 32%, #f9fafb 100%);
-      color: var(--text-main);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-    }
-
+    html, body { height: 100%; }
     body {
+      margin: 0;
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 0% -10%, rgba(148,99,56,0.08), transparent 60%),
+        radial-gradient(1000px 500px at 100% -20%, rgba(30,79,75,0.08), transparent 60%),
+        linear-gradient(180deg, #e5e7eb 0, var(--bg) 32%, #f9fafb 100%);
       display: flex;
       justify-content: center;
     }
+    a { color: var(--link); text-decoration: underline; text-underline-offset: .15em; }
+    a:hover, a:focus { color: var(--link-hover); text-decoration-thickness: 2px; }
 
-    .page {
+    .container {
       width: 100%;
-      max-width: 960px;
-      padding: 1.5rem 1.5rem 3rem;
+      max-width: var(--container);
+      padding: 1rem 1rem 3rem;
+    }
+
+    /* ---------- Skip Link ---------- */
+    .skip-link {
+      position: absolute; left: 1rem; top: -100px;
+      background: var(--bg-elev); border: 2px solid var(--accent);
+      padding: .5rem .75rem; border-radius: .5rem; z-index: 1000;
+    }
+    .skip-link:focus { top: .75rem; }
+
+    /* ---------- Header / Nav ---------- */
+    .shell {
+      width: 100%;
+      background: radial-gradient(circle at top left, #eef1f7 0, var(--bg) 45%, #f8fafc 100%);
+      box-shadow: var(--shadow-lg);
       border-left: 1px solid var(--border-strong);
       border-right: 1px solid var(--border-strong);
-      background: radial-gradient(circle at top left, #eef1f7 0, var(--bg-main) 45%, #f8fafc 100%);
-      box-shadow: 0 20px 40px rgba(15,23,42,0.12);
+      min-height: 100%;
     }
-
-    /* Top navigation */
-
-    .top-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 0 1.25rem;
-      border-bottom: 2px solid var(--border-strong);
-      margin-bottom: 1.75rem;
-      position: sticky;
-      top: 0;
-      background: linear-gradient(90deg,
-        rgba(30,79,75,0.08),
-        rgba(148,99,56,0.05),
-        rgba(245,246,248,0.96));
+    header.site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(90deg, rgba(30,79,75,0.08), rgba(148,99,56,0.05), rgba(245,246,248,0.96));
       backdrop-filter: blur(6px);
-      z-index: 10;
-    }
-
-    .brand {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .brand span {
-      color: var(--accent);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.7rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 600;
-      font-size: 0.78rem;
-      padding: 0.15rem 0;
-      border-bottom: 2px solid transparent;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-      outline: none;
-    }
-
-    @media (max-width: 700px) {
-      .top-nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        row-gap: 0.4rem;
-      }
-    }
-
-    /* Hero / header */
-
-    .hero {
-      padding: 1.9rem 1.7rem 1.9rem;
-      margin-bottom: 2.25rem;
-      background: linear-gradient(135deg,
-        rgba(30,79,75,0.09),
-        rgba(255,255,255,0.98));
-      border-radius: 22px;
-      border: 2px solid var(--accent-soft);
-      box-shadow: 0 16px 40px rgba(15,23,42,0.16);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      background: radial-gradient(circle,
-        rgba(148,99,56,0.3),
-        transparent 70%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .hero-title {
-      font-size: 2.25rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin: 0 0 0.5rem;
       border-bottom: 2px solid var(--border-strong);
-      padding-bottom: 0.4rem;
+    }
+    .nav {
+      height: var(--header-h);
+      display: grid; grid-template-columns: 1fr auto; align-items: center;
+      gap: 1rem;
+    }
+    .brand {
+      font-size: .92rem; text-transform: uppercase; letter-spacing: .14em;
+      color: var(--text-muted); font-weight: 700; white-space: nowrap;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 1.25rem; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; border-bottom: 2px solid transparent;
+      text-transform: uppercase; letter-spacing: .12em; font-weight: 700; font-size: .78rem;
+      color: var(--text-muted); padding: .3rem .1rem; border-radius: .25rem;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: var(--accent); border-bottom-color: var(--accent); }
+    .nav-links a[aria-current="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Mobile menu */
+    .nav-toggle {
+      display: none;
+      background: transparent; border: 2px solid var(--border-strong);
+      padding: .45rem .6rem; border-radius: .5rem; line-height: 0;
+    }
+    .nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .nav-toggle svg { width: 22px; height: 22px; }
+
+    @media (max-width: 760px) {
+      .nav { grid-template-columns: auto auto; }
+      .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; justify-content: center; align-items: center; }
+      .drawer[hidden] { display: none; }
+      .drawer {
+        position: fixed; inset: calc(var(--header-h) + 8px) 0 auto 0;
+        background: var(--bg-elev); border-top: 1px solid var(--border);
+        box-shadow: var(--shadow-md); padding: .75rem 1rem;
+      }
+      .drawer a {
+        display: block; padding: .7rem .25rem; font-size: .9rem; border-radius: .5rem;
+      }
+      .drawer a:hover, .drawer a:focus { background: rgba(30,79,75,0.08); text-decoration: none; }
     }
 
+    /* ---------- Hero ---------- */
+    .hero {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, rgba(30,79,75,0.09), rgba(255,255,255,0.98));
+      border-radius: var(--radius-xl);
+      border: 2px solid var(--accent-soft);
+      box-shadow: var(--shadow-lg);
+      padding: 1.6rem 1.35rem 1.6rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ""; position: absolute; right: -80px; top: -80px; width: 210px; height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(148,99,56,0.3), transparent 70%);
+      opacity: .9; pointer-events: none;
+    }
+    .hero-title {
+      font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+      letter-spacing: .08em; text-transform: uppercase; margin: 0 0 .4rem;
+      border-bottom: 2px solid var(--border-strong); padding-bottom: .35rem;
+    }
     .hero-subtitle {
-      font-size: 0.98rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-bottom: 1.1rem;
+      font-size: .98rem; text-transform: uppercase; letter-spacing: .16em; color: var(--accent); margin-bottom: .9rem;
     }
-
     .hero-meta {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 0.35rem;
+      font-size: .92rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: .2rem;
     }
-
-    .hero-contact {
-      font-size: 0.9rem;
-      margin-bottom: 1.15rem;
-      color: var(--accent-second);
-      font-weight: 500;
-    }
-
-    .hero-bio {
-      font-size: 0.98rem;
-      max-width: 44rem;
-    }
-
+    .hero-contact { font-size: .95rem; margin-bottom: .9rem; color: var(--accent-2); font-weight: 600; }
     .hero-divider {
       height: 1px;
-      background: linear-gradient(90deg,
-        transparent,
-        var(--line-soft),
-        transparent);
-      margin: 1.1rem 0 0.9rem;
+      background: linear-gradient(90deg, transparent, #9ca3af, transparent);
+      margin: .9rem 0 .8rem;
     }
-
-    .hero-tags {
-      margin-top: 0.4rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .2rem; }
     .tag {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      border-radius: 999px;
-      border: 1px solid var(--accent-soft);
-      padding: 0.24rem 0.9rem;
-      color: var(--accent);
-      background: rgba(30,79,75,0.06);
+      font-size: .78rem; text-transform: uppercase; letter-spacing: .14em;
+      border-radius: 999px; border: 1px solid var(--accent-soft);
+      padding: .24rem .9rem; color: var(--accent); background: rgba(30,79,75,0.06);
     }
+    .tag.alt { border-color: rgba(148,99,56,0.7); color: var(--accent-2); background: rgba(148,99,56,0.09); }
 
-    .tag-alt {
-      border-color: rgba(148,99,56,0.7);
-      color: var(--accent-second);
-      background: rgba(148,99,56,0.09);
-    }
-
-    /* Sections */
-
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    section {
-      background: var(--bg-card);
-      border-radius: 18px;
-      padding: 1.8rem 1.7rem 1.9rem;
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 14px 28px rgba(15,23,42,0.06);
+    /* ---------- Sections ---------- */
+    main { display: grid; gap: 1.4rem; }
+    section.block {
+      background: var(--bg-elev);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.3rem 1.6rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
       position: relative;
+      scroll-margin-top: calc(var(--header-h) + 16px); /* keeps anchors visible under sticky header */
     }
-
-    section::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.6rem;
-      width: 4px;
-      height: calc(100% - 1.2rem);
+    section.block::before {
+      content: ""; position: absolute; left: 0; top: .6rem; width: 4px; height: calc(100% - 1.2rem);
       border-radius: 0 4px 4px 0;
-      background: linear-gradient(
-        180deg,
-        rgba(30,79,75,0.8),
-        rgba(148,99,56,0.9));
-      opacity: 0.7;
+      background: linear-gradient(180deg, rgba(30,79,75,0.85), rgba(148,99,56,0.9));
+      opacity: .7;
     }
-
-    .section-inner {
-      border-left: 2px solid var(--border-strong);
-      padding-left: 1.35rem;
-    }
-
-    section + section {
-      margin-top: 0.25rem;
-    }
-
+    .section-inner { border-left: 2px solid var(--border-strong); padding-left: 1.2rem; }
     .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.1rem;
-      border-bottom: 1px solid var(--border-strong);
-      padding-bottom: 0.5rem;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+      margin-bottom: .9rem; border-bottom: 1px solid var(--border-strong); padding-bottom: .45rem;
     }
-
     .section-title {
-      font-size: 1.12rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin: 0;
+      font-size: 1.1rem; text-transform: uppercase; letter-spacing: .2em; margin: 0;
     }
-
     .section-title::before {
-      content: "";
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--accent), var(--accent-second));
-      margin-right: 0.6rem;
-      vertical-align: middle;
-      box-shadow: 0 0 0 3px rgba(30,79,75,0.12);
+      content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      background: radial-gradient(circle, var(--accent), var(--accent-2)); margin-right: .6rem;
+      vertical-align: middle; box-shadow: 0 0 0 3px rgba(30,79,75,0.12);
     }
+    .section-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .18em; color: var(--accent); }
+    .section-intro { font-size: .95rem; color: var(--text-muted); margin-bottom: 1rem; border-top: 1px dashed #9ca3af; padding-top: .7rem; }
 
-    .section-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-    }
-
-    .section-intro {
-      font-size: 0.94rem;
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-      max-width: 42rem;
-      border-top: 1px dashed var(--line-soft);
-      padding-top: 0.75rem;
-    }
-
-    /* Research */
-
-    .research-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.2rem 0 0;
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .research-list li {
-      position: relative;
-      padding-left: 1.3rem;
-      font-size: 0.94rem;
-    }
-
+    /* Research list */
+    .research-list { list-style: none; padding: 0; margin: .2rem 0 0; display: grid; gap: .45rem; }
+    .research-list li { position: relative; padding-left: 1.3rem; font-size: .95rem; }
     .research-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.72em;
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 999px;
-      background: radial-gradient(circle, var(--accent), var(--accent-second));
+      content: ""; position: absolute; left: 0; top: .72em; width: .5rem; height: .5rem; border-radius: 999px;
+      background: radial-gradient(circle, var(--accent), var(--accent-2));
       box-shadow: 0 0 0 2px rgba(15,23,42,0.12);
     }
 
     /* Education */
+    .edu-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin-top: .2rem; border-top: 1px solid #9ca3af; padding-top: .7rem; }
+    @media (min-width: 900px) { .edu-grid { grid-template-columns: 1.1fr 1fr; } .edu-grid > :last-child { grid-column: 1 / -1; } }
+    .edu-card { border-radius: var(--radius-md); border: 1px dashed var(--border-strong); padding: 1rem 1.1rem;
+      background: linear-gradient(135deg, rgba(30,79,75,0.03), #fbfcfd); position: relative; }
+    .edu-card::before { content: ""; position: absolute; top: .75rem; left: .7rem; width: 32px; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent); opacity: .7; }
+    .edu-degree { font-weight: 700; }
+    .edu-field { color: var(--accent-2); }
+    .edu-inst { color: var(--text-muted); }
+    .edu-years { font-size: .82rem; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); }
+    .edu-grade, .edu-activities, .edu-summary { font-size: .9rem; }
+    details.edu-details summary { cursor: pointer; list-style: none; color: var(--accent); font-weight: 600; display: inline-flex; gap: .35rem; align-items: center; }
+    details.edu-details summary::-webkit-details-marker { display: none; }
+    .edu-details-icon::before { content: "▸"; font-size: .85rem; color: var(--text-muted); transition: transform .15s ease; }
+    details[open].edu-details .edu-details-icon::before { transform: rotate(90deg); }
+    .edu-course-list { margin: .4rem 0 0; padding-left: 1.1rem; }
 
-    .edu-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.2rem;
-      margin-top: 0.4rem;
-      border-top: 1px solid var(--line-soft);
-      padding-top: 0.8rem;
-    }
-
-    .edu-card {
-      border-radius: 14px;
-      border: 1px dashed var(--border-strong);
-      padding: 1rem 1.1rem;
-      background: linear-gradient(135deg,
-        rgba(30,79,75,0.03),
-        #fbfcfd);
-      position: relative;
-    }
-
-    .edu-card::before {
-      content: "";
-      position: absolute;
-      top: 0.75rem;
-      left: 0.7rem;
-      width: 32px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0.7;
-    }
-
-    .edu-degree {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-    }
-
-    .edu-field {
-      font-size: 0.9rem;
-      color: var(--accent-second);
-      margin-bottom: 0.25rem;
-    }
-
-    .edu-inst {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.15rem;
-    }
-
-    .edu-years {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    .edu-grade {
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .edu-activities {
-      font-size: 0.86rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .edu-activities strong {
-      font-weight: 600;
-    }
-
-    .edu-summary {
-      font-size: 0.9rem;
-      margin-bottom: 0.45rem;
-    }
-
-    details.edu-details {
-      margin-top: 0.3rem;
-      font-size: 0.88rem;
-    }
-
-    details.edu-details summary {
-      cursor: pointer;
-      list-style: none;
-      color: var(--accent);
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    details.edu-details summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .edu-details-icon::before {
-      content: "▸";
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      transition: transform 0.15s ease;
-    }
-
-    details[open].edu-details .edu-details-icon::before {
-      transform: rotate(90deg);
-    }
-
-    .edu-course-list {
-      margin: 0.45rem 0 0;
-      padding-left: 1.1rem;
-    }
-
-    .edu-course-list li + li {
-      margin-top: 0.12rem;
-    }
-
-    @media (min-width: 900px) {
-      .edu-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      }
-
-      .edu-grid > :last-child {
-        grid-column: 1 / -1;
-      }
-    }
-
-    /* Collapsible publications grouped by year */
-
-    .pub-years {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-top: 0.4rem;
-    }
-
+    /* Publications */
+    .pub-years { display: grid; gap: .7rem; margin-top: .2rem; }
     details.pub-year-block {
-      border-radius: 12px;
-      border: 1px solid var(--border-strong);
-      background: #ffffff;
-      padding: 0.6rem 0.9rem 0.55rem;
+      border-radius: 12px; border: 1px solid var(--border-strong); background: var(--bg-elev);
+      padding: .6rem .9rem .55rem;
     }
-
     details.pub-year-block.pub-year-new {
       border-color: rgba(148,99,56,0.75);
-      background: linear-gradient(135deg,
-        rgba(148,99,56,0.08),
-        #ffffff);
-      box-shadow: 0 10px 24px rgba(15,23,42,0.12);
+      background: linear-gradient(135deg, rgba(148,99,56,0.08), var(--bg-elev));
+      box-shadow: var(--shadow-md);
     }
-
-    details.pub-year-block + details.pub-year-block {
-      margin-top: 0.2rem;
-    }
-
-    details.pub-year-block summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.2rem 0.1rem 0.35rem;
-    }
-
-    details.pub-year-block summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .summary-main {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .pub-year-label {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .pill {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      padding: 0.14rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(30,79,75,0.7);
-      color: var(--accent);
-      background: rgba(30,79,75,0.08);
-      white-space: nowrap;
-    }
-
-    .pill-new {
-      border-color: rgba(148,99,56,0.85);
-      color: var(--accent-second);
-      background: rgba(148,99,56,0.12);
-    }
-
-    .summary-icon::before {
-      content: "▾";
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      transition: transform 0.15s ease;
-    }
-
-    details[open].pub-year-block .summary-icon::before {
-      transform: rotate(180deg);
-    }
-
-    .pub-year-body {
-      border-top: 1px solid var(--border-strong);
-      margin-top: 0.45rem;
-      padding-top: 0.55rem;
-    }
-
-    .pub-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.1rem 0 0;
-      display: grid;
-      gap: 0.75rem;
-      font-size: 0.92rem;
-    }
-
-    .pub-item {
-      padding-left: 0.9rem;
-      border-left: 3px solid rgba(148,163,184,0.9);
-    }
-
-    .pub-title {
-      font-weight: 500;
-    }
-
-    .pub-journal {
-      font-style: italic;
-    }
-
-    .pub-doi {
-      margin-top: 0.1rem;
-      font-size: 0.86rem;
-    }
-
-    a {
-      color: var(--link);
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 0.15em;
-    }
-
-    a:hover,
-    a:focus {
-      color: var(--link-hover);
-      text-decoration-thickness: 2px;
-      outline: none;
-    }
+    details.pub-year-block summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .2rem .1rem .3rem; }
+    details.pub-year-block summary::-webkit-details-marker { display: none; }
+    .summary-main { display: flex; align-items: center; gap: .6rem; }
+    .pub-year-label { font-size: .82rem; text-transform: uppercase; letter-spacing: .18em; color: var(--accent); font-weight: 800; }
+    .pill { font-size: .7rem; text-transform: uppercase; letter-spacing: .16em; padding: .14rem .7rem; border-radius: 999px; border: 1px solid rgba(30,79,75,0.7); color: var(--accent); background: rgba(30,79,75,0.08); white-space: nowrap; }
+    .pill-new { border-color: rgba(148,99,56,0.85); color: var(--accent-2); background: rgba(148,99,56,0.12); }
+    .summary-icon::before { content: "▾"; font-size: .85rem; color: var(--text-muted); transition: transform .15s ease; }
+    details[open].pub-year-block .summary-icon::before { transform: rotate(180deg); }
+    .pub-year-body { border-top: 1px solid var(--border-strong); margin-top: .45rem; padding-top: .5rem; }
+    .pub-list { list-style: none; padding: 0; margin: .1rem 0 0; display: grid; gap: .7rem; font-size: .94rem; }
+    .pub-item { padding-left: .9rem; border-left: 3px solid rgba(148,163,184,0.9); }
+    .pub-title { font-weight: 550; }
+    .pub-journal { font-style: italic; }
+    .pub-doi { margin-top: .1rem; font-size: .86rem; }
 
     /* Teaching */
+    .teaching-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin-top: .2rem; border-top: 1px solid #9ca3af; padding-top: .7rem; }
+    @media (min-width: 860px) { .teaching-grid { grid-template-columns: 1.05fr 1fr; } }
+    .teaching-block { padding: 1rem 1.1rem; border-radius: 12px; border: 1px dashed var(--border-strong); background: linear-gradient(135deg, rgba(30,79,75,0.03), #fbfcfd); position: relative; }
+    .teaching-block::before { content: ""; position: absolute; top: .75rem; left: .7rem; width: 28px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: .7; }
+    .teaching-title { font-size: .98rem; font-weight: 700; margin: 0 0 .45rem; }
+    .teaching-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .16em; color: var(--accent-2); margin-bottom: .4rem; }
+    .teaching-list { margin: 0; padding-left: 1.1rem; font-size: .92rem; }
+    .teaching-list li + li { margin-top: .12rem; }
 
-    .teaching-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.3rem;
-      margin-top: 0.4rem;
-      border-top: 1px solid var(--line-soft);
-      padding-top: 0.8rem;
+    /* Footer & Back to Top */
+    footer {
+      margin-top: 1.25rem; padding: 1.25rem 1rem 2rem;
+      color: var(--text-muted); font-size: .9rem; border-top: 1px solid var(--border-strong);
     }
-
-    .teaching-block {
-      padding: 1rem 1.15rem;
-      border-radius: 12px;
-      border: 1px dashed var(--border-strong);
-      background: linear-gradient(135deg,
-        rgba(30,79,75,0.03),
-        #fbfcfd);
-      position: relative;
+    .top-btn {
+      position: fixed; right: 1rem; bottom: 1rem; z-index: 60;
+      display: none; /* toggled via JS */
+      border: 2px solid var(--accent); background: var(--bg-elev); color: var(--accent);
+      padding: .55rem .7rem; border-radius: .7rem; box-shadow: var(--shadow-md);
     }
+    .top-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-    .teaching-block::before {
-      content: "";
-      position: absolute;
-      top: 0.75rem;
-      left: 0.7rem;
-      width: 28px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0.7;
-    }
+    /* Focus styles */
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-    .teaching-title {
-      font-size: 0.96rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem;
-    }
-
-    .teaching-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent-second);
-      margin-bottom: 0.4rem;
-    }
-
-    .teaching-list {
-      margin: 0;
-      padding-left: 1.1rem;
-      font-size: 0.9rem;
-    }
-
-    .teaching-list li + li {
-      margin-top: 0.15rem;
-    }
-
-    @media (min-width: 860px) {
-      .teaching-grid {
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-      }
+    /* Print */
+    @media print {
+      header, .top-btn { display: none !important; }
+      section.block::before { display: none; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .85em; }
+      body { box-shadow: none; background: #fff; color: #000; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header class="top-nav">
-      <div class="brand">
-        <span>Tomasz&nbsp;Dyrmo</span> · Cognitive Linguistics
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="shell">
+    <header class="site-header">
+      <div class="container nav" role="navigation" aria-label="Primary">
+        <div class="brand">
+          <span>Tomasz&nbsp;Dyrmo</span> · Cognitive Linguistics
+        </div>
+
+        <button class="nav-toggle" aria-label="Open menu" aria-controls="mobile-drawer" aria-expanded="false">
+          <!-- why: inline SVG avoids extra requests -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <nav class="nav-links" aria-label="In-page">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#education">Education</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+        </nav>
       </div>
-      <nav class="nav-links" aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#education">Education</a>
-        <a href="#publications">Publications</a>
-        <a href="#teaching">Teaching</a>
-      </nav>
+
+      <!-- Mobile drawer -->
+      <div id="mobile-drawer" class="drawer" hidden>
+        <nav aria-label="Mobile">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#education">Education</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+        </nav>
+      </div>
     </header>
 
-    <section class="hero" id="about">
-      <div>
+    <main id="main" class="container" tabindex="-1">
+      <!-- Hero -->
+      <section class="hero" id="about">
         <h1 class="hero-title">dr&nbsp;Tomasz&nbsp;Dyrmo</h1>
-        <div class="hero-subtitle">
-          cognitive linguistics · gesture · conceptual metaphor · multimodal cognition
-        </div>
-        <div class="hero-meta">
-          Assistant Professor · Department of Cognitive Linguistics · Faculty of English
-        </div>
-        <p class="hero-contact">
-          Contact: <a href="mailto:tomasz.dyrmo@amu.edu.pl">tomasz.dyrmo@amu.edu.pl</a>
-        </p>
+        <p class="hero-subtitle">cognitive linguistics · gesture · conceptual metaphor · multimodal cognition</p>
+        <p class="hero-meta">Assistant Professor · Department of Cognitive Linguistics · Faculty of English</p>
+        <p class="hero-contact">Contact: <a href="mailto:tomasz.dyrmo@amu.edu.pl">tomasz.dyrmo@amu.edu.pl</a></p>
         <p class="hero-bio">
           I am a cognitive linguist working with various types of data, including language, gesture,
           as well as visual and literary narratives. I publish on conceptual metaphor theory and its
           multimodal, multilevel aspects, trying to understand how our minds make sense of the world
           around us.
         </p>
-        <div class="hero-divider"></div>
-        <div class="hero-tags">
+        <div class="hero-divider" role="presentation"></div>
+        <div class="hero-tags" aria-label="Key areas">
           <span class="tag">Conceptual metaphor theory</span>
           <span class="tag">Gesture studies</span>
           <span class="tag">Multimodal cognition</span>
-          <span class="tag tag-alt">Narrative analysis</span>
+          <span class="tag alt">Narrative analysis</span>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <main>
-      <section id="research">
+      <!-- Research -->
+      <section id="research" class="block" aria-labelledby="research-title">
         <div class="section-inner">
           <div class="section-header">
-            <h2 class="section-title">Research Profile</h2>
+            <h2 id="research-title" class="section-title">Research Profile</h2>
             <div class="section-label">Current &amp; Expanding Directions</div>
           </div>
           <p class="section-intro">
             My work focuses on how conceptual metaphors operate across modalities and levels of
             representation, from image schemas and gesture to discourse and narrative structure. I am
-            particularly interested in how multimodal cues shape affective meaning and social
-            positioning.
+            particularly interested in how multimodal cues shape affective meaning and social positioning.
           </p>
-          <h3 class="section-label" style="margin: 0.2rem 0 0.4rem;">Expanding research directions:</h3>
+          <h3 class="section-label" style="margin: .2rem 0 .4rem;">Expanding research directions:</h3>
           <ul class="research-list" aria-label="Expanding research directions">
             <li>Literary semantics and cognitive stylistics</li>
             <li>Gesture-based emotional cues in narrative</li>
@@ -722,26 +395,26 @@
         </div>
       </section>
 
-      <section id="education">
+      <!-- Education -->
+      <section id="education" class="block" aria-labelledby="education-title">
         <div class="section-inner">
           <div class="section-header">
-            <h2 class="section-title">Education</h2>
+            <h2 id="education-title" class="section-title">Education</h2>
             <div class="section-label">Degrees &amp; training</div>
           </div>
           <p class="section-intro">
             Academic training in linguistics, applied cognitive linguistics, and translation studies,
-            with a strong focus on bilingualism, psycholinguistics, gesture research, and empirical
-            methods in language and communication.
+            with a strong focus on bilingualism, psycholinguistics, gesture research, and empirical methods.
           </p>
 
           <div class="edu-grid">
             <!-- PhD -->
-            <div class="edu-card">
-              <div class="edu-degree">Doctor of Philosophy (PhD), Linguistics</div>
-              <div class="edu-field">Uniwersytet im. Adama Mickiewicza w Poznaniu</div>
-              <div class="edu-years">2019–2023</div>
+            <article class="edu-card">
+              <h3 class="edu-degree">Doctor of Philosophy (PhD), Linguistics</h3>
+              <p class="edu-field">Uniwersytet im. Adama Mickiewicza w Poznaniu</p>
+              <p class="edu-years">2019–2023</p>
               <p class="edu-summary">
-                Doctoral research in linguistics at the Faculty of English, with a focus on cognitive
+                Doctoral research in linguistics at the Faculty of English, focusing on cognitive
                 linguistics, conceptual metaphor, gesture, and multimodal narratives.
               </p>
               <p class="edu-activities">
@@ -749,10 +422,7 @@
                 School of Languages and Literatures PhD Student Council member (2021/2022).
               </p>
               <details class="edu-details">
-                <summary>
-                  <span class="edu-details-icon" aria-hidden="true"></span>
-                  Selected doctoral courses
-                </summary>
+                <summary><span class="edu-details-icon" aria-hidden="true"></span> Selected doctoral courses</summary>
                 <ul class="edu-course-list">
                   <li>Teaching in the academia</li>
                   <li>Neurobiological foundations of language</li>
@@ -765,28 +435,21 @@
                   <li>Statistics in linguistic research</li>
                 </ul>
               </details>
-            </div>
+            </article>
 
             <!-- MA -->
-            <div class="edu-card">
-              <div class="edu-degree">Master of Arts (MA), English Studies</div>
-              <div class="edu-field">Applied Cognitive Linguistics</div>
-              <div class="edu-inst">Uniwersytet im. Adama Mickiewicza w Poznaniu</div>
-              <div class="edu-years">2017–2019</div>
+            <article class="edu-card">
+              <h3 class="edu-degree">Master of Arts (MA), English Studies</h3>
+              <p class="edu-field">Applied Cognitive Linguistics</p>
+              <p class="edu-inst">Uniwersytet im. Adama Mickiewicza w Poznaniu</p>
+              <p class="edu-years">2017–2019</p>
               <p class="edu-grade">Final grade: 5/5</p>
               <p class="edu-summary">
-                MA programme in Applied Cognitive Linguistics, combining cognitive and psycholinguistic
-                approaches with empirical research methods. MA thesis in cognitive linguistics and
-                gesture studies.
+                MA programme combining cognitive & psycholinguistic approaches with empirical methods. Thesis in cognitive linguistics and gesture studies.
               </p>
-              <p class="edu-activities">
-                <strong>Activities:</strong> member of the <em>Dyskursanci</em> reading group.
-              </p>
+              <p class="edu-activities"><strong>Activities:</strong> member of the <em>Dyskursanci</em> reading group.</p>
               <details class="edu-details">
-                <summary>
-                  <span class="edu-details-icon" aria-hidden="true"></span>
-                  Selected linguistics courses
-                </summary>
+                <summary><span class="edu-details-icon" aria-hidden="true"></span> Selected linguistics courses</summary>
                 <ul class="edu-course-list">
                   <li>Introduction to language processing (psycholinguistics)</li>
                   <li>Bilingualism and multilingualism; bilingualism, language, and cognition</li>
@@ -798,24 +461,21 @@
                   <li>Cognitive communication design</li>
                 </ul>
               </details>
-            </div>
+            </article>
 
             <!-- BA -->
-            <div class="edu-card">
-              <div class="edu-degree">Bachelor’s degree, English Studies</div>
-              <div class="edu-field">Translation Studies</div>
-              <div class="edu-inst">Uniwersytet Warmińsko-Mazurski w Olsztynie</div>
-              <div class="edu-years">2014–2017</div>
+            <article class="edu-card">
+              <h3 class="edu-degree">Bachelor’s degree, English Studies</h3>
+              <p class="edu-field">Translation Studies</p>
+              <p class="edu-inst">Uniwersytet Warmińsko-Mazurski w Olsztynie</p>
+              <p class="edu-years">2014–2017</p>
               <p class="edu-grade">Final grade: 5/5</p>
               <p class="edu-summary">
                 Undergraduate degree in English Studies with a specialisation in Translation Studies,
-                covering written translation, interpreting, and specialist language domains.
+                covering written translation, interpreting, and specialist domains.
               </p>
               <details class="edu-details">
-                <summary>
-                  <span class="edu-details-icon" aria-hidden="true"></span>
-                  Selected translation courses
-                </summary>
+                <summary><span class="edu-details-icon" aria-hidden="true"></span> Selected translation courses</summary>
                 <ul class="edu-course-list">
                   <li>Introduction to Translation Studies</li>
                   <li>Interpreting</li>
@@ -824,21 +484,22 @@
                   <li>Introduction to psycholinguistics</li>
                 </ul>
               </details>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="publications">
+      <!-- Publications -->
+      <section id="publications" class="block" aria-labelledby="pubs-title">
         <div class="section-inner">
           <div class="section-header">
-            <h2 class="section-title">Publications</h2>
+            <h2 id="pubs-title" class="section-title">Publications</h2>
             <div class="section-label">Selected peer-reviewed work</div>
           </div>
           <p class="section-intro">
             Selected publications on conceptual metaphor, gesture, multimodal meaning, and discourse,
-            grouped by year. The most recent work is highlighted and expanded by default; earlier
-            years can be expanded as needed.
+            grouped by year. The most recent work is highlighted and expanded by default; earlier years
+            can be expanded as needed.
           </p>
 
           <div class="pub-years">
@@ -860,8 +521,7 @@
                       <span class="pub-journal">Language and Cognition, 17, e4.</span>
                     </div>
                     <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1017/langcog.2024.49" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1017/langcog.2024.49</a>
+                      DOI: <a href="https://doi.org/10.1017/langcog.2024.49" target="_blank" rel="noopener noreferrer">https://doi.org/10.1017/langcog.2024.49</a>
                     </div>
                   </li>
 
@@ -872,32 +532,27 @@
                       <span class="pub-journal">Cognitive Semiotics, 18, 23–51.</span>
                     </div>
                     <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1515/cogsem-2025-2001" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1515/cogsem-2025-2001</a>
+                      DOI: <a href="https://doi.org/10.1515/cogsem-2025-2001" target="_blank" rel="noopener noreferrer">https://doi.org/10.1515/cogsem-2025-2001</a>
                     </div>
                   </li>
 
                   <li class="pub-item">
                     <div class="pub-title">
                       Dyrmo, T. (2025). Secrets in Motion: The role of gestures in a multimodal coming out
-                      narrative.
-                      <span class="pub-journal">Narrative Inquiry.</span>
+                      narrative. <span class="pub-journal">Narrative Inquiry.</span>
                     </div>
                     <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1075/ni.25013.dyr" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1075/ni.25013.dyr</a>
+                      DOI: <a href="https://doi.org/10.1075/ni.25013.dyr" target="_blank" rel="noopener noreferrer">https://doi.org/10.1075/ni.25013.dyr</a>
                     </div>
                   </li>
 
                   <li class="pub-item">
                     <div class="pub-title">
                       Dyrmo, T. (2025). Valence distribution and valence alignment in the metaphor
-                      <em>być na świeczniku</em> in Polish.
-                      <span class="pub-journal">Metaphor and the Social World.</span>
+                      <em>być na świeczniku</em> in Polish. <span class="pub-journal">Metaphor and the Social World.</span>
                     </div>
                     <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1075/msw.25015.dyr" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1075/msw.25015.dyr</a>
+                      DOI: <a href="https://doi.org/10.1075/msw.25015.dyr" target="_blank" rel="noopener noreferrer">https://doi.org/10.1075/msw.25015.dyr</a>
                     </div>
                   </li>
                 </ul>
@@ -907,9 +562,7 @@
             <!-- 2024 -->
             <details class="pub-year-block">
               <summary>
-                <div class="summary-main">
-                  <span class="pub-year-label">2024</span>
-                </div>
+                <div class="summary-main"><span class="pub-year-label">2024</span></div>
                 <span class="summary-icon" aria-hidden="true"></span>
               </summary>
               <div class="pub-year-body">
@@ -919,10 +572,7 @@
                       Dyrmo, T. (2024). Image schemas in gestural metaphorical scenarios of swearing.
                       <span class="pub-journal">Multimodal Communication, 13(2).</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1515/mc-2023-0060" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1515/mc-2023-0060</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.1515/mc-2023-0060" target="_blank" rel="noopener noreferrer">https://doi.org/10.1515/mc-2023-0060</a></div>
                   </li>
 
                   <li class="pub-item">
@@ -930,10 +580,7 @@
                       Dyrmo, T. (2024). Levels of metaphor in gesture.
                       <span class="pub-journal">Pragmatics and Cognition, 30(2), 330–352.</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1075/pc.00033.dyr" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1075/pc.00033.dyr</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.1075/pc.00033.dyr" target="_blank" rel="noopener noreferrer">https://doi.org/10.1075/pc.00033.dyr</a></div>
                   </li>
 
                   <li class="pub-item">
@@ -942,10 +589,7 @@
                       Japan 2011 earthquake distress relief posters.
                       <span class="pub-journal">Review of Cognitive Linguistics.</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1075/rcl.00202.dyr" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1075/rcl.00202.dyr</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.1075/rcl.00202.dyr" target="_blank" rel="noopener noreferrer">https://doi.org/10.1075/rcl.00202.dyr</a></div>
                   </li>
                 </ul>
               </div>
@@ -954,9 +598,7 @@
             <!-- 2023 -->
             <details class="pub-year-block">
               <summary>
-                <div class="summary-main">
-                  <span class="pub-year-label">2023</span>
-                </div>
+                <div class="summary-main"><span class="pub-year-label">2023</span></div>
                 <span class="summary-icon" aria-hidden="true"></span>
               </summary>
               <div class="pub-year-body">
@@ -966,10 +608,7 @@
                       Dyrmo, T. (2023). Metaphors of coming out in Polish: A cognitive linguistic approach.
                       <span class="pub-journal">Topics in Linguistics, 24(1), 94–107.</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.2478/topling-2023-0007" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.2478/topling-2023-0007</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.2478/topling-2023-0007" target="_blank" rel="noopener noreferrer">https://doi.org/10.2478/topling-2023-0007</a></div>
                   </li>
                 </ul>
               </div>
@@ -978,9 +617,7 @@
             <!-- 2022 -->
             <details class="pub-year-block">
               <summary>
-                <div class="summary-main">
-                  <span class="pub-year-label">2022</span>
-                </div>
+                <div class="summary-main"><span class="pub-year-label">2022</span></div>
                 <span class="summary-icon" aria-hidden="true"></span>
               </summary>
               <div class="pub-year-body">
@@ -990,10 +627,7 @@
                       Dyrmo, T. (2022). Gestural metaphorical scenarios and coming out narratives.
                       <span class="pub-journal">Metaphor and the Social World, 12(1), 23–45.</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.1075/msw.20023.dyr" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.1075/msw.20023.dyr</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.1075/msw.20023.dyr" target="_blank" rel="noopener noreferrer">https://doi.org/10.1075/msw.20023.dyr</a></div>
                   </li>
 
                   <li class="pub-item">
@@ -1001,10 +635,7 @@
                       Dyrmo, T. (2022). A multilevel cognitive model of coming out.
                       <span class="pub-journal">Papers in Linguistics, 24(4), 27–43.</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.31648/pj.8159" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.31648/pj.8159</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.31648/pj.8159" target="_blank" rel="noopener noreferrer">https://doi.org/10.31648/pj.8159</a></div>
                   </li>
 
                   <li class="pub-item">
@@ -1012,10 +643,7 @@
                       Dyrmo, T. (2022). Do We Need Queer Cognitive Linguistics?
                       <span class="pub-journal">Tekst i Dyskurs / Text und Diskurs, 16(1), 241–257.</span>
                     </div>
-                    <div class="pub-doi">
-                      DOI: <a href="https://doi.org/10.7311/tid.16.2022.12" target="_blank" rel="noopener noreferrer">
-                      https://doi.org/10.7311/tid.16.2022.12</a>
-                    </div>
+                    <div class="pub-doi">DOI: <a href="https://doi.org/10.7311/tid.16.2022.12" target="_blank" rel="noopener noreferrer">https://doi.org/10.7311/tid.16.2022.12</a></div>
                   </li>
                 </ul>
               </div>
@@ -1024,10 +652,11 @@
         </div>
       </section>
 
-      <section id="teaching">
+      <!-- Teaching -->
+      <section id="teaching" class="block" aria-labelledby="teaching-title">
         <div class="section-inner">
           <div class="section-header">
-            <h2 class="section-title">Teaching</h2>
+            <h2 id="teaching-title" class="section-title">Teaching</h2>
             <div class="section-label">Courses &amp; Focus Areas</div>
           </div>
           <p class="section-intro">
@@ -1039,8 +668,7 @@
           <div class="teaching-grid">
             <div class="teaching-block">
               <p class="teaching-label">University courses</p>
-
-              <div style="margin-bottom: 0.75rem;">
+              <div style="margin-bottom: .6rem;">
                 <h3 class="teaching-title">BA Seminar</h3>
                 <ul class="teaching-list">
                   <li>Supervision of bachelor’s theses</li>
@@ -1050,7 +678,7 @@
                 </ul>
               </div>
 
-              <div style="margin-bottom: 0.75rem;">
+              <div style="margin-bottom: .6rem;">
                 <h3 class="teaching-title">Academic Writing for Cognitive Science</h3>
                 <ul class="teaching-list">
                   <li>Structure of scientific papers (IMRD conventions)</li>
@@ -1059,7 +687,7 @@
                 </ul>
               </div>
 
-              <div style="margin-bottom: 0.75rem;">
+              <div style="margin-bottom: .6rem;">
                 <h3 class="teaching-title">Academic Writing for Linguists</h3>
                 <ul class="teaching-list">
                   <li>Rhetorical structure and citation practices</li>
@@ -1081,7 +709,7 @@
             <div class="teaching-block">
               <p class="teaching-label">PNJA &amp; EFL</p>
 
-              <div style="margin-bottom: 0.75rem;">
+              <div style="margin-bottom: .6rem;">
                 <h3 class="teaching-title">PNJA Modules</h3>
                 <ul class="teaching-list">
                   <li><strong>Writing:</strong> coherence, cohesion, genre conventions, summaries, paragraphs, essays</li>
@@ -1091,7 +719,7 @@
                 </ul>
               </div>
 
-              <div style="margin-bottom: 0.75rem;">
+              <div style="margin-bottom: .6rem;">
                 <h3 class="teaching-title">English Language Teaching (EFL)</h3>
                 <ul class="teaching-list">
                   <li>TEFL for children, teenagers and adults</li>
@@ -1113,6 +741,70 @@
         </div>
       </section>
     </main>
+
+    <footer class="container" role="contentinfo">
+      <p>© <span id="year"></span> Tomasz Dyrmo · Faculty of English · <a href="mailto:tomasz.dyrmo@amu.edu.pl">tomasz.dyrmo@amu.edu.pl</a></p>
+    </footer>
   </div>
+
+  <button class="top-btn" id="backToTop" aria-label="Back to top">↑ Top</button>
+
+  <script>
+    // why: keep JS minimal & resilient
+
+    // Mobile drawer
+    const toggleBtn = document.querySelector('.nav-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+
+    function closeDrawer() {
+      drawer.hidden = true;
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.setAttribute('aria-label', 'Open menu');
+      document.removeEventListener('keydown', handleEsc);
+    }
+
+    function openDrawer() {
+      drawer.hidden = false;
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      toggleBtn.setAttribute('aria-label', 'Close menu');
+      document.addEventListener('keydown', handleEsc);
+    }
+
+    function handleEsc(e) { if (e.key === 'Escape') closeDrawer(); }
+
+    toggleBtn?.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      expanded ? closeDrawer() : openDrawer();
+    });
+
+    drawer?.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') closeDrawer();
+    });
+
+    // Scroll-spy (active link)
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const links = [...document.querySelectorAll('.nav-links a, #mobile-drawer a')];
+
+    function setActive(id) {
+      links.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + id ? 'true' : 'false'));
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      // pick the most visible entry
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible?.target?.id) setActive(visible.target.id);
+    }, { rootMargin: `-40% 0px -55% 0px`, threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+    sections.forEach(s => obs.observe(s));
+
+    // Back-to-top button
+    const topBtn = document.getElementById('backToTop');
+    const showTop = () => { topBtn.style.display = window.scrollY > 600 ? 'inline-block' : 'none'; };
+    window.addEventListener('scroll', showTop, { passive: true });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
