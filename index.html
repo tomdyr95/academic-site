@@ -19,8 +19,8 @@
       --bg-elev: #ffffff;
       --text: #0f172a;
       --text-muted: #4b5563;
-      --border: #cbd5e1;
-      --border-strong: #94a3b8;
+      --border: #d1d5db;
+      --border-strong: #9ca3af;
       --accent: #1e4f4b;
       --accent-2: #946338;
       --accent-soft: #b7e0dd;
@@ -28,10 +28,10 @@
       --link-hover: #123331;
       --shadow-lg: 0 18px 40px rgba(15,23,42,0.12);
       --shadow-md: 0 12px 26px rgba(15,23,42,0.08);
-      --radius-xl: 22px;
+      --radius-xl: 24px;
       --radius-lg: 18px;
       --radius-md: 14px;
-      --container: 980px;
+      --container: 1040px;
       --header-h: 64px;
     }
 
@@ -64,15 +64,16 @@
     body {
       margin: 0;
       font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-      line-height: 1.65;
-      font-size: 15px;
+      line-height: 1.7;
+      font-size: 16px;
       color: var(--text);
       background:
-        radial-gradient(900px 450px at 0% -10%, rgba(148,99,56,0.10), transparent 65%),
-        radial-gradient(780px 420px at 100% -15%, rgba(30,79,75,0.09), transparent 60%),
+        radial-gradient(900px 450px at 0% -10%, rgba(148,99,56,0.08), transparent 65%),
+        radial-gradient(780px 420px at 100% -15%, rgba(30,79,75,0.08), transparent 60%),
         linear-gradient(180deg, #e5e7eb 0, var(--bg) 40%, #f9fafb 100%);
       display: flex;
       justify-content: center;
+      padding: 0.75rem 0;
     }
     a {
       color: var(--link);
@@ -88,7 +89,13 @@
     .container {
       width: 100%;
       max-width: var(--container);
-      padding: 1rem 1.25rem 3rem;
+      padding: 1rem 1.5rem 3rem;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding-inline: 1.1rem;
+      }
     }
 
     /* ---------- Skip Link ---------- */
@@ -109,17 +116,24 @@
       width: 100%;
       background: radial-gradient(circle at top left, #f9fafb 0, var(--bg) 45%, #f8fafc 100%);
       box-shadow: var(--shadow-lg);
-      border-left: 1px solid var(--border-strong);
-      border-right: 1px solid var(--border-strong);
+      border: 1px solid var(--border-strong);
       min-height: 100%;
+      overflow: hidden;
+      border-radius: 0;
+    }
+
+    @media (min-width: 900px) {
+      .shell {
+        border-radius: var(--radius-xl);
+      }
     }
 
     header.site-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: linear-gradient(90deg, rgba(30,79,75,0.08), rgba(148,99,56,0.05), rgba(245,246,248,0.96));
-      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(30,79,75,0.1), rgba(148,99,56,0.05), rgba(245,246,248,0.96));
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-strong);
     }
     .nav {
@@ -144,6 +158,14 @@
       color: var(--accent);
       font-weight: 800;
     }
+    .brand::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 4px rgba(30,79,75,0.12);
+    }
     .nav-links {
       display: flex;
       gap: 1.25rem;
@@ -164,6 +186,7 @@
     .nav-links a:focus {
       color: var(--accent);
       border-bottom-color: var(--accent);
+      background: rgba(15,23,42,0.02);
     }
     .nav-links a[aria-current="true"] {
       color: var(--accent);
@@ -173,10 +196,10 @@
     /* Mobile menu */
     .nav-toggle {
       display: none;
-      background: transparent;
-      border: 2px solid var(--border-strong);
+      background: rgba(15,23,42,0.02);
+      border: 1px solid var(--border-strong);
       padding: .45rem .6rem;
-      border-radius: .5rem;
+      border-radius: .6rem;
       line-height: 0;
     }
     .nav-toggle:focus-visible {
@@ -207,7 +230,7 @@
         background: var(--bg-elev);
         border-top: 1px solid var(--border);
         box-shadow: var(--shadow-md);
-        padding: .75rem 1rem;
+        padding: .75rem 1.25rem 1rem;
       }
       .drawer a {
         display: block;
@@ -229,7 +252,7 @@
       border-radius: var(--radius-xl);
       border: 1px solid var(--accent-soft);
       box-shadow: var(--shadow-lg);
-      padding: 1.6rem 1.5rem 1.7rem;
+      padding: 1.8rem 1.6rem 1.9rem;
       position: relative;
       overflow: hidden;
     }
@@ -241,12 +264,27 @@
       width: 210px;
       height: 210px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(148,99,56,0.24), transparent 70%);
-      opacity: .85;
+      background: radial-gradient(circle, rgba(148,99,56,0.22), transparent 70%);
+      opacity: .75;
       pointer-events: none;
     }
+
+    .hero-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1.4rem;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 880px) {
+      .hero-layout {
+        grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+      }
+    }
+
     .hero-title {
-      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-size: clamp(1.9rem, 2.5vw, 2.4rem);
       letter-spacing: .08em;
       text-transform: uppercase;
       margin: 0 0 .4rem;
@@ -278,21 +316,47 @@
       font-size: .96rem;
       color: var(--text-muted);
       margin: .2rem 0 .7rem;
-      position: relative;
-      z-index: 1;
     }
     .hero-divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, #9ca3af, transparent);
-      margin: .85rem 0 .75rem;
+      margin: .9rem 0 .75rem;
     }
+
+    .hero-side {
+      align-self: stretch;
+      max-width: 320px;
+      justify-self: flex-end;
+      background: rgba(255,255,255,0.92);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-strong);
+      padding: 1rem 1.15rem 1.05rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    @media (max-width: 879px) {
+      .hero-side {
+        max-width: 100%;
+        justify-self: stretch;
+      }
+    }
+
+    .hero-side-title {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--accent-2);
+      margin: 0;
+    }
+
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: .45rem;
-      margin-top: .2rem;
-      position: relative;
-      z-index: 1;
+      margin-top: .1rem;
     }
     .tag {
       font-size: .78rem;
@@ -315,6 +379,7 @@
     main {
       display: grid;
       gap: 1.4rem;
+      margin-top: 1.4rem;
     }
     section.block {
       background: var(--bg-elev);
@@ -334,7 +399,7 @@
       height: calc(100% - 1.4rem);
       border-radius: 0 4px 4px 0;
       background: linear-gradient(180deg, rgba(30,79,75,0.8), rgba(148,99,56,0.9));
-      opacity: .65;
+      opacity: .55;
     }
     .section-inner {
       border-left: 2px solid var(--border-strong);
@@ -493,7 +558,7 @@
       padding: .6rem .9rem .55rem;
     }
     details.pub-year-block.pub-year-new {
-      border-color: rgba(148,99,56,0.8);
+      border-color: rgba(148,99,56,0.85);
       background: linear-gradient(135deg, rgba(148,99,56,0.07), var(--bg-elev));
       box-shadow: var(--shadow-md);
     }
@@ -623,10 +688,11 @@
     /* Footer & Back to Top */
     footer {
       margin-top: 1.25rem;
-      padding: 1.25rem 1.1rem 2rem;
+      padding: 1.25rem 1.5rem 2rem;
       color: var(--text-muted);
       font-size: .9rem;
       border-top: 1px solid var(--border-strong);
+      background: linear-gradient(180deg, rgba(15,23,42,0.02), transparent);
     }
     .top-btn {
       position: fixed;
@@ -665,6 +731,11 @@
         box-shadow: none;
         background: #fff;
         color: #000;
+      }
+      .shell {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
       }
     }
   </style>
@@ -709,22 +780,30 @@
     <main id="main" class="container" tabindex="-1">
       <!-- Hero -->
       <section class="hero" id="about">
-        <h1 class="hero-title">dr&nbsp;Tomasz&nbsp;Dyrmo</h1>
-        <p class="hero-subtitle">cognitive linguistics · gesture · conceptual metaphor · multimodal cognition</p>
-        <p class="hero-meta">Assistant Professor · Department of Cognitive Linguistics · Faculty of English</p>
-        <p class="hero-contact">Contact: <a href="mailto:tomasz.dyrmo@amu.edu.pl">tomasz.dyrmo@amu.edu.pl</a></p>
-        <p class="hero-bio">
-          I am a cognitive linguist working with various types of data, including language, gesture,
-          as well as visual and literary narratives. I publish on conceptual metaphor theory and its
-          multimodal, multilevel aspects, trying to understand how our minds make sense of the world
-          around us.
-        </p>
-        <div class="hero-divider" role="presentation"></div>
-        <div class="hero-tags" aria-label="Key areas">
-          <span class="tag">Conceptual metaphor theory</span>
-          <span class="tag">Gesture studies</span>
-          <span class="tag">Multimodal cognition</span>
-          <span class="tag alt">Narrative analysis</span>
+        <div class="hero-layout">
+          <div class="hero-main">
+            <h1 class="hero-title">dr&nbsp;Tomasz&nbsp;Dyrmo</h1>
+            <p class="hero-subtitle">cognitive linguistics · gesture · conceptual metaphor · multimodal cognition</p>
+            <p class="hero-meta">Assistant Professor · Department of Cognitive Linguistics · Faculty of English</p>
+            <p class="hero-contact">Contact: <a href="mailto:tomasz.dyrmo@amu.edu.pl">tomasz.dyrmo@amu.edu.pl</a></p>
+            <p class="hero-bio">
+              I am a cognitive linguist working with various types of data, including language, gesture,
+              as well as visual and literary narratives. I publish on conceptual metaphor theory and its
+              multimodal, multilevel aspects, trying to understand how our minds make sense of the world
+              around us.
+            </p>
+            <div class="hero-divider" role="presentation"></div>
+          </div>
+
+          <aside class="hero-side" aria-label="Key focus areas">
+            <p class="hero-side-title">Key research focus</p>
+            <div class="hero-tags">
+              <span class="tag">Conceptual metaphor theory</span>
+              <span class="tag">Gesture studies</span>
+              <span class="tag">Multimodal cognition</span>
+              <span class="tag alt">Narrative analysis</span>
+            </div>
+          </aside>
         </div>
       </section>
 
